@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import enums.eGame;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.stage.FileChooser;
 import poker.app.MainApp;
+import pokerBase.Rule;
 
 /**
  * The controller for the root layout. The root layout provides the basic
@@ -27,11 +29,22 @@ public class RootLayoutController implements Initializable {
 
     // Reference to the main application
     private MainApp mainApp;
+    
+    private static Rule clicked_rule;
 
     @FXML
     private Menu mnuGame;
     
     
+    
+	public static Rule getClicked_rule() {
+		return clicked_rule;
+	}
+
+	public static void setClicked_rule(Rule clicked_rule) {
+		RootLayoutController.clicked_rule = clicked_rule;
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -60,6 +73,36 @@ public class RootLayoutController implements Initializable {
 		
 		mnuGame.getItems().add(item2);*/
 		
+		
+	}
+	
+	public void handle5CardStud(){
+		if(PokerTableController.check_game_on() == false){
+		clicked_rule = new Rule(eGame.FiveStud);
+		}
+		else{
+			return;
+		}
+		
+	}
+	
+	public void handleOmaha(){
+		if(PokerTableController.check_game_on() == false){
+		clicked_rule = new Rule(eGame.Omaha);
+		}
+		else{
+			return;
+		}
+		
+	}
+	
+	public void handleTexasHoldEm(){
+		if(PokerTableController.check_game_on() == false){
+		clicked_rule = new Rule(eGame.TexasHoldEm);
+		}
+		else{
+			return;
+		}
 		
 	}
     
