@@ -319,6 +319,7 @@ public class PokerTableController {
 		//  Disable the button in case of double-click
 		btnDraw.setDisable(true);
 		
+		if(iCardDrawn <= RootLayoutController.getClicked_rule().GetNumberOfCards()){
 		// Draw a card for each player seated
 		for (Player p : mainApp.GetSeatedPlayers()) {
 			Card c = gme.getGameDeck().drawFromDeck();
@@ -344,40 +345,44 @@ public class PokerTableController {
 			}
 			
 		}
+		}
 
-		if (iCardDrawn == gme.getNbrOfCards()) {
-			/**if (RootLayoutController.getClicked_rule().GetCommunityCardsCount() > 0){
-				for(int i = 0; i < RootLayoutController.getClicked_rule().GetCommunityCardsCount(); i++){
+		else{
+			if (RootLayoutController.getClicked_rule().GetCommunityCardsCount() > 0){
 					Card c = gme.getGameDeck().drawFromDeck();
-					DealCard(HboxCommunityCards, c);
+					DealCard(HboxCommunityCards, c, true);
 					
 				}
-			} **/
-			btnDraw.setVisible(false);
+			} 
+			if(iCardDrawn == RootLayoutController.getClicked_rule().GetCommunityCardsCount()
+					+ RootLayoutController.getClicked_rule().GetNumberOfCards()){
+				btnDraw.setVisible(false);
+			}
 		}
-		
-		
-		
-		
-
-	}
 
 	
 	private void DealCardPlayer(Player my_player, HBox my_Hbox, Card dealt_card){
 
-		DealCard(my_Hbox, dealt_card);
+		DealCard(my_Hbox, dealt_card, false);
 		PlayerHand(my_player, dealt_card);
 		
 	}
 	
-	private void DealCard(HBox my_Hbox, Card dealt_card){
+	private void DealCard(HBox my_Hbox, Card dealt_card, boolean isCommunity){
+		int Card_location = 0;
+		if(isCommunity){
+			Card_location = iCardDrawn - RootLayoutController.getClicked_rule().GetNumberOfCards() - 1;
+		}
+		else{
+			Card_location = iCardDrawn - 1;
+		}
 //		This is the card that is going to be dealt to the player.
 			String strCard = "/res/img/" + dealt_card.getCardImg();
 			ImageView imgvCardDealt = new ImageView(new Image(getClass().getResourceAsStream(strCard), 96, 71, true, true));
 			
 			// imgvCardFaceDown - There's already a place holder card sitting in the player's hbox.  It's face down.  Find it
 			// and then determine it's bounds and top left hand handle. 				
-			ImageView imgvCardFaceDown = (ImageView) my_Hbox.getChildren().get(iCardDrawn - 1);			
+			ImageView imgvCardFaceDown = (ImageView) my_Hbox.getChildren().get(Card_location);			
 			Bounds bndCardDealt = imgvCardFaceDown.localToScene(imgvCardFaceDown.getBoundsInLocal());
 			Point2D pntCardDealt = new Point2D(bndCardDealt.getMinX(), bndCardDealt.getMinY());
 			
