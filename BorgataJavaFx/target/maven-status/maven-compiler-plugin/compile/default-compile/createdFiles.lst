@@ -1,0 +1,5 @@
+poker\app\MainApp.class
+poker\app\view\PokerTableController.class
+poker\app\view\RootLayoutController.class
+poker\app\view\PokerTableController$1.class
+poker\app\view\PokerTableController$2.class

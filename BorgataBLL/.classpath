@@ -24,5 +24,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BorgataDAL"/>
+	<classpathentry kind="lib" path="C:/download/commons-math3-3.0.jar/commons-math3-3.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
