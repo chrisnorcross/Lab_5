@@ -14,7 +14,7 @@ public final class Card extends CardDomainModel {
 	/**
 	 * Keep the no-arg constructor private.  I don't want 'Card' created without attributes.
 	 */
-	private Card()
+	Card()
 	{
 	}
 	

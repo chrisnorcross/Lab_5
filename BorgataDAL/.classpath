@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="target/classes" path="src/main/java">
+	<classpathentry kind="src" output="target/classes" path="java">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
@@ -27,6 +27,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/download/commons-math3-3.0.jar/commons-math3-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/download/commons-math3-3.5-bin/commons-math3-3.5/commons-math3-3.5.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
